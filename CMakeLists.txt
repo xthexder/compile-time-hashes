@@ -14,18 +14,18 @@ option(HASHES_BUILD_BENCHMAKRS "Build the benchmarks for the hashes module" ON)
 
 include(FetchContent)
 
-add_library(hashes
+add_library(hashes INTERFACE
 	${CMAKE_CURRENT_SOURCE_DIR}/include/hashes/config.hpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/hashes/fast_perfect_compressed_hash.hpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/hashes/perfect_compressed_hash.hpp
 )
 
-target_include_directories(hashes PUBLIC
+target_include_directories(hashes INTERFACE
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
 target_compile_features(hashes
-	PUBLIC cxx_std_17
+	INTERFACE cxx_std_17
 )
 set_target_properties(hashes PROPERTIES LINKER_LANGUAGE CXX)
 add_library(domohuhn::hashes ALIAS hashes)
@@ -103,4 +103,3 @@ endif()
 #
 # Install
 #
-

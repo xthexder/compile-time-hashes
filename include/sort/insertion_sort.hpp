@@ -29,7 +29,8 @@ constexpr void insertion_sort(Iterator begin, Iterator end)
         while(itr!=begin_copy && *itr<*itr2){
             swap(*itr,*itr2);
             std::advance(itr,-1);
-            std::advance(itr2,-1);
+            if(itr!=begin_copy)
+                std::advance(itr2,-1);
         }
         std::advance(begin,1);
     }
